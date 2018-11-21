@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[1],{122:function(n,e,a){"use strict";a.r(e);var t=a(0),c=a.n(t);e.default=function(){return c.a.createElement("div",null,"Hello, Gatsby vocab search!")}}}]);
+//# sourceMappingURL=component---src-pages-index-js-40c4e1b3b25befe617ae.js.map
