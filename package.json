@@ -10,6 +10,7 @@
     "deploy": "gatsby build --prefix-paths && gh-pages -d public"
   },
   "dependencies": {
+    "csv-parse": "4.0.1",
     "gatsby": "2.0.53",
     "react": "16.6.3",
     "react-dom": "16.6.3"
