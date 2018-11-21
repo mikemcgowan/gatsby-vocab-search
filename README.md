@@ -1,12 +1,5 @@
-# gatsby-starter-hello-world
-Starter with the bare essentials needed for a [Gatsby](https://www.gatsbyjs.org/) site.
+# Gatsby.js vocabulary search
 
-Install this starter (assuming Gatsby is installed) by running from your CLI:
-```
-gatsby new gatsby-site https://github.com/gatsbyjs/gatsby-starter-hello-world
-```
+Searches [vocabulary CSV file](https://github.com/mikemcgowan/memrise-scraper-scala) using Gatsby.js.
 
-Or [view the live demo here](https://gatsby-starter-hello-world-demo.netlify.com/).
-
-## Running in development
-`gatsby develop`
+See [here](https://mikemcgowan.github.io/gatsby-vocab-search/).

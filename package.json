@@ -1,6 +1,6 @@
 {
-  "name": "gatsby-starter-hello-world",
-  "description": "Gatsby hello world starter",
+  "name": "gatsby-vocab-search",
+  "description": "Gatsby vocab search",
   "license": "MIT",
   "scripts": {
     "develop": "gatsby develop",
@@ -9,8 +9,8 @@
     "serve": "gatsby serve"
   },
   "dependencies": {
-    "gatsby": "^2.0.33",
-    "react": "^16.5.1",
-    "react-dom": "^16.5.1"
+    "gatsby": "2.0.53",
+    "react": "16.6.3",
+    "react-dom": "16.6.3"
   }
 }
