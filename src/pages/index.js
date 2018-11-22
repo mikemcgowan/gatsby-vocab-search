@@ -35,7 +35,7 @@ export default class Index extends React.Component {
           <ul>
             {vocab.map(vocabItem => (
               <li key={vocabItem[0]}>
-                {vocabItem[0] + 1} {vocabItem[1]}
+                {vocabItem[0] + 1} {vocabItem[1]} {vocabItem[2]}
               </li>
             ))}
           </ul>

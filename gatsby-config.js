@@ -1,3 +1,11 @@
 module.exports = {
-  pathPrefix: "/gatsby-vocab-search",
+  pathPrefix: '/gatsby-vocab-search',
+  plugins: [
+    {
+      resolve: 'gatsby-plugin-typography',
+      options: {
+        pathToConfigModule: 'src/utils/typography.js',
+      },
+    },
+  ],
 }
