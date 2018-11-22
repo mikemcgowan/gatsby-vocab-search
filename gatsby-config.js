@@ -11,5 +11,11 @@ module.exports = {
         pathToConfigModule: 'src/utils/typography.js',
       },
     },
+    {
+      resolve: 'gatsby-source-csv',
+      options: {
+        url: 'https://raw.githubusercontent.com/mikemcgowan/memrise-scraper-scala/master/memrise_database.csv',
+      },
+    },
   ],
 }

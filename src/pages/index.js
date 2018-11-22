@@ -1,54 +1,38 @@
 import React from 'react'
-import parse from 'csv-parse'
 import { graphql } from 'gatsby'
 
-import { tail, withIndex } from '../utils/misc'
-
-export default class Index extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      vocab: [],
-    }
-  }
-
-  async componentDidMount() {
-    const url = this.props.data.site.siteMetadata.url
-    const rawVocab = await fetch(url).then(response => response.text())
-
-    parse(rawVocab, (err, output) => {
-      this.setState({
-        vocab: tail(output).map(withIndex),
-      })
-    })
-  }
-
-  render() {
-    const { vocab } = this.state
-    return (
-      <div>
-        {vocab.length === 0 ? (
-          <p>Loading vocab &hellip;</p>
-        ) : (
-          <ul>
-            {vocab.map(vocabItem => (
-              <li key={vocabItem[0]}>
-                {vocabItem[0] + 1} {vocabItem[1]} {vocabItem[2]}
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
-    )
-  }
-}
+export default ({ data }) => (
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <th>Polish</th>
+          <th>English</th>
+          <th>Other</th>
+          <th>Type</th>
+        </tr>
+      </thead>
+      <tbody>
+        {data.allCsvItem.edges.map(({ node }, index) => (
+          <tr key={index}>
+            <td>{node.data[0]}</td>
+            <td>{node.data[1]}</td>
+            <td>{node.data[2]}</td>
+            <td>{node.data[3]}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+)
 
 export const query = graphql`
   query {
-    site {
-      siteMetadata {
-        url
+    allCsvItem {
+      edges {
+        node {
+          data
+        }
       }
     }
   }
