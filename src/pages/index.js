@@ -1,9 +1,10 @@
 import React from 'react'
 import parse from 'csv-parse'
 
-import {tail, withIndex} from '../utils/misc'
+import { tail, withIndex } from '../utils/misc'
 
-const url = 'https://raw.githubusercontent.com/mikemcgowan/memrise-scraper-scala/master/memrise_database.csv'
+const url =
+  'https://raw.githubusercontent.com/mikemcgowan/memrise-scraper-scala/master/memrise_database.csv'
 
 export default class Index extends React.Component {
   constructor(props) {
@@ -15,13 +16,11 @@ export default class Index extends React.Component {
   }
 
   async componentDidMount() {
-    const rawVocab = await fetch(url).then(
-      response => response.text()
-    )
+    const rawVocab = await fetch(url).then(response => response.text())
 
     parse(rawVocab, (err, output) => {
       this.setState({
-        vocab: tail(output).map(withIndex)
+        vocab: tail(output).map(withIndex),
       })
     })
   }
@@ -35,7 +34,9 @@ export default class Index extends React.Component {
         ) : (
           <ul>
             {vocab.map(vocabItem => (
-              <li key={vocabItem[0]}>{vocabItem[0] + 1} {vocabItem[1]}</li>
+              <li key={vocabItem[0]}>
+                {vocabItem[0] + 1} {vocabItem[1]}
+              </li>
             ))}
           </ul>
         )}
