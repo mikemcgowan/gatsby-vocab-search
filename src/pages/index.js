@@ -1,10 +1,8 @@
 import React from 'react'
 import parse from 'csv-parse'
+import { graphql } from 'gatsby'
 
 import { tail, withIndex } from '../utils/misc'
-
-const url =
-  'https://raw.githubusercontent.com/mikemcgowan/memrise-scraper-scala/master/memrise_database.csv'
 
 export default class Index extends React.Component {
   constructor(props) {
@@ -16,6 +14,7 @@ export default class Index extends React.Component {
   }
 
   async componentDidMount() {
+    const url = this.props.data.site.siteMetadata.url
     const rawVocab = await fetch(url).then(response => response.text())
 
     parse(rawVocab, (err, output) => {
@@ -44,3 +43,13 @@ export default class Index extends React.Component {
     )
   }
 }
+
+export const query = graphql`
+  query {
+    site {
+      siteMetadata {
+        url
+      }
+    }
+  }
+`
