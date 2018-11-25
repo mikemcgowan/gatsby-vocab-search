@@ -1,30 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { graphql } from 'gatsby'
+import { setConfig } from 'react-hot-loader'
 
-import Layout from "../components/layout"
+import Layout from '../components/layout'
+import Table from '../components/table'
+import searchFn from '../utils/search'
 
-const getRandomInt = max => Math.floor(Math.random() * Math.floor(max))
+// @see {@link https://github.com/gatsbyjs/gatsby/issues/9489}
+setConfig({ pureSFC: true })
 
 export default ({ data }) => {
-  const x = getRandomInt(data.allCsvItem.edges.length)
+  const [search, setSearch] = useState('')
+  const nodes = data.allCsvItem.edges.map(({ node }) => node)
   return (
     <Layout>
-      <table>
-        <thead>
-          <tr>
-            <th>Polish</th>
-            <th>English</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.allCsvItem.edges.slice(x, x + 10).map(({ node }, index) => (
-            <tr key={index}>
-              <td>{node.data[0]}</td>
-              <td>{node.data[1]}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <button type="button" onClick={() => setSearch('')}>
+        Clear
+      </button>
+      <input type="text" onChange={e => setSearch(e.target.value)} value={search} />
+      <Table nodes={searchFn(search, nodes)} />
     </Layout>
   )
 }
