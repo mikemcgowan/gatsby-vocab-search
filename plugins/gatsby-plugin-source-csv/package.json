@@ -1,6 +1,6 @@
 {
-  "name": "gatsby-source-csv",
-  "description": "Gatsby source CSV",
+  "name": "gatsby-plugin-source-csv",
+  "description": "Gatsby plugin source CSV",
   "license": "MIT",
   "dependencies": {
     "node-fetch": "2.3.0",

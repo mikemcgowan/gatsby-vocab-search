@@ -8,7 +8,7 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-source-csv',
+      resolve: 'gatsby-plugin-source-csv',
       options: {
         url: 'https://raw.githubusercontent.com/mikemcgowan/memrise-scraper-scala/master/memrise_database.csv',
       },
