@@ -4,7 +4,7 @@ export default ({ nodes }) => (
   <table>
     <thead>
       <tr>
-        <th>Polish</th>
+        <th style={{width: '40%'}}>Polish</th>
         <th>English</th>
       </tr>
     </thead>

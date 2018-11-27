@@ -14,11 +14,36 @@ export default ({ data }) => {
   const nodes = data.allCsvItem.edges.map(({ node }) => node)
   return (
     <Layout>
-      <button type="button" onClick={() => setSearch('')}>
-        Clear
-      </button>
-      <input type="text" onChange={e => setSearch(e.target.value)} value={search} />
-      <Table nodes={searchFn(search, nodes)} />
+      <div className="row">
+        <div className="column column-20">
+          <button
+            className="button"
+            type="button"
+            onClick={() => setSearch('')}
+            disabled={search.length === 0}
+          >
+            Clear
+          </button>
+        </div>
+        <div className="column column-80">
+          <input
+            autoFocus
+            type="text"
+            onChange={e => setSearch(e.target.value)}
+            value={search}
+          />
+        </div>
+      </div>
+      <div className="row">
+        <div className="column">
+          <small>{nodes.length} vocab items</small>
+        </div>
+      </div>
+      <div className="row">
+        <div className="column">
+          <Table nodes={searchFn(search, nodes)} />
+        </div>
+      </div>
     </Layout>
   )
 }
