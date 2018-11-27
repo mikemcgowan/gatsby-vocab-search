@@ -4,6 +4,11 @@ import { setConfig } from 'react-hot-loader'
 
 import Layout from '../components/layout'
 import Table from '../components/table'
+import Showing from '../components/showing'
+import Row from '../components/milligram/row'
+import Column from '../components/milligram/column'
+import Button from '../components/milligram/button'
+import SingleColumnRow from '../components/milligram/singleColumnRow'
 import searchFn from '../utils/search'
 
 // @see {@link https://github.com/gatsbyjs/gatsby/issues/9489}
@@ -11,39 +16,31 @@ setConfig({ pureSFC: true })
 
 export default ({ data }) => {
   const [search, setSearch] = useState('')
-  const nodes = data.allCsvItem.edges.map(({ node }) => node)
+  const allNodes = data.allCsvItem.edges.map(({ node }) => node)
+  const nodes = searchFn(search, allNodes)
   return (
     <Layout>
-      <div className="row">
-        <div className="column column-20">
-          <button
-            className="button"
-            type="button"
-            onClick={() => setSearch('')}
-            disabled={search.length === 0}
-          >
-            Clear
-          </button>
-        </div>
-        <div className="column column-80">
+      <Row>
+        <Column>
           <input
             autoFocus
             type="text"
             onChange={e => setSearch(e.target.value)}
             value={search}
           />
-        </div>
-      </div>
-      <div className="row">
-        <div className="column">
-          <small>{nodes.length} vocab items</small>
-        </div>
-      </div>
-      <div className="row">
-        <div className="column">
-          <Table nodes={searchFn(search, nodes)} />
-        </div>
-      </div>
+        </Column>
+        <Column percent="25">
+          <Button onClick={() => setSearch('')} disabled={search.length === 0}>
+            Clear
+          </Button>
+        </Column>
+      </Row>
+      <SingleColumnRow percent="25">
+        <Showing total={allNodes.length} current={nodes.length} term={search} />
+      </SingleColumnRow>
+      <SingleColumnRow>
+        <Table nodes={nodes} term={search} />
+      </SingleColumnRow>
     </Layout>
   )
 }
