@@ -1,5 +1,6 @@
 const fetch = require('node-fetch')
 const parse = require('csv-parse')
+const path = require('path')
 
 const head = xs => xs[0]
 const tail = xs => xs.slice(1)
@@ -42,3 +43,41 @@ exports.sourceNodes = (
         )
       )
     )
+
+exports.onCreateNode = ({ node, actions }) => {
+  const { createNodeField } = actions
+  if (node.internal.type === 'CSVItem') {
+    createNodeField({
+      node,
+      name: 'slug',
+      value: node.id,
+    })
+  }
+}
+
+exports.createPages = ({ graphql, actions }) => {
+  const { createPage } = actions
+  return graphql(`
+    {
+      allCsvItem {
+        edges {
+          node {
+            fields {
+              slug
+            }
+          }
+        }
+      }
+    }
+  `).then(result => {
+    result.data.allCsvItem.edges.forEach(({ node }) => {
+      createPage({
+        path: node.fields.slug,
+        component: path.resolve('./src/templates/csv-item.js'),
+        context: {
+          slug: node.fields.slug,
+        },
+      })
+    })
+  })
+}

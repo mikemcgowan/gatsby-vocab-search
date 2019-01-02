@@ -17,8 +17,16 @@ export default ({ nodes, term }) => {
       <tbody>
         {nodes.map((node, index) => (
           <tr key={index}>
-            <HilightedCell text={node.data[0]} term={term} />
-            <HilightedCell text={node.data[1]} term={term} />
+            <HilightedCell
+              text={node.data[0]}
+              term={term}
+              slug={node.fields.slug}
+            />
+            <HilightedCell
+              text={node.data[1]}
+              term={term}
+              slug={node.fields.slug}
+            />
           </tr>
         ))}
       </tbody>

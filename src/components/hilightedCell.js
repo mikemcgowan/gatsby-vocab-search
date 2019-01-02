@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'gatsby'
 
 const hilight = (text, term) => {
   const i = text.toLowerCase().indexOf(term.toLowerCase())
@@ -13,10 +14,12 @@ const hilight = (text, term) => {
   )
 }
 
-export default ({ text, term }) => (
+export default ({ text, term, slug }) => (
   <td>
-    {text.toLowerCase().includes(term.toLowerCase())
-      ? hilight(text, term)
-      : text}
+    <Link to={slug}>
+      {text.toLowerCase().includes(term.toLowerCase())
+        ? hilight(text, term)
+        : text}
+    </Link>
   </td>
 )
