@@ -1,5 +1,5 @@
 const fetch = require('node-fetch')
-const parse = require('csv-parse')
+const parse = require('csv-parse/lib/sync')
 const path = require('path')
 
 const head = xs => xs[0]
@@ -33,16 +33,15 @@ exports.sourceNodes = (
 ) =>
   fetch(configOptions.url)
     .then(response => response.text())
-    .then(rawCsv =>
-      parse(rawCsv, (err, output) =>
-        createNodesFromItems(
-          createNodeId,
-          createContentDigest,
-          actions.createNode,
-          tail(output).map(withIndex)
-        )
+    .then(rawCsv => {
+      const output = parse(rawCsv)
+      createNodesFromItems(
+        createNodeId,
+        createContentDigest,
+        actions.createNode,
+        tail(output).map(withIndex)
       )
-    )
+    })
 
 exports.onCreateNode = ({ node, actions }) => {
   const { createNodeField } = actions
