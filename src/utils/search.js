@@ -1,7 +1,7 @@
 import { any } from './misc'
 
 export default (term, nodes) => {
-  if (typeof term !== 'string' || term.length < 2) {
+  if (typeof term !== 'string' || term.length < 3) {
     return []
   }
   return nodes.filter(node =>

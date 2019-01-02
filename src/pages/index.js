@@ -17,7 +17,7 @@ setConfig({ pureSFC: true })
 export default ({ data }) => {
   const [search, setSearch] = useState('')
   const allNodes = data.allCsvItem.edges.map(({ node }) => node)
-  const nodes = searchFn(search, allNodes)
+  const nodes = searchFn(search, allNodes).slice(0, 100)
   return (
     <Layout>
       <Row>
