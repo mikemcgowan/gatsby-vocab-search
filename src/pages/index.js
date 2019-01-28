@@ -51,9 +51,6 @@ export const query = graphql`
       edges {
         node {
           data
-          fields {
-            slug
-          }
         }
       }
     }
