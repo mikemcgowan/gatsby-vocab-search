@@ -4,6 +4,7 @@ import { setConfig } from 'react-hot-loader'
 
 import Layout from '../components/layout'
 import Table from '../components/table'
+import Example from '../components/example'
 import Showing from '../components/showing'
 import Row from '../components/milligram/row'
 import Column from '../components/milligram/column'
@@ -36,10 +37,13 @@ export default ({ data }) => {
         </Column>
       </Row>
       <SingleColumnRow percent="25">
-        <Showing total={allNodes.length} current={nodes.length} term={search} />
+        <Showing total={allNodes.length} nodes={nodes} term={search} />
       </SingleColumnRow>
       <SingleColumnRow>
         <Table nodes={nodes} term={search} />
+      </SingleColumnRow>
+      <SingleColumnRow>
+        <Example nodes={nodes} />
       </SingleColumnRow>
     </Layout>
   )
